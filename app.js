@@ -1,6 +1,7 @@
 import Fastify from "fastify";
 import envPlugin from "./plugins/env.plugin.js";
 import redisPlugins from "./plugins/redis.plugins.js";
+import fastifyAxios from "fastify-axios";
 
 const fastify = Fastify({
 	logger: true,
@@ -17,6 +18,7 @@ const fastify = Fastify({
 fastify
 	.register(envPlugin)
 	.register(redisPlugins)
+	.register(fastifyAxios)
 	.after((err) => {
 		if (err) {
 			fastify.log.error(
