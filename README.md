@@ -2,6 +2,7 @@
 
 > A Weather rest api built with Fastify, this project is written in JavaScript
 > to fetch some weather data.
+> This project is based on the exercise from [Roadmap.sh] https://roadmap.sh/projects/weather-api-wrapper-service
 
 ## How to run
 
