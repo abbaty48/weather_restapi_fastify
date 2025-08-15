@@ -1,12 +1,15 @@
 import Fastify from "fastify";
+import fastifyAxios from "fastify-axios";
 import envPlugin from "./plugins/env.plugin.js";
 import redisPlugins from "./plugins/redis.plugins.js";
-import fastifyAxios from "fastify-axios";
+import weatherRoutes from "./routes/weather.routes.js";
 
 const fastify = Fastify({
 	logger: true,
-	caseSensitive: false,
-	ignoreTrailingSlash: true,
+	routerOptions: {
+		caseSensitive: false,
+		ignoreTrailingSlash: true,
+	},
 	ajv: {
 		customOptions: {
 			coerceTypes: "array",
@@ -19,6 +22,7 @@ fastify
 	.register(envPlugin)
 	.register(redisPlugins)
 	.register(fastifyAxios)
+	.register(weatherRoutes)
 	.after((err) => {
 		if (err) {
 			fastify.log.error(
